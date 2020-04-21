@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+
+import "google/protobuf/timestamp.proto";
+
+message sendSignalRequest {
+    string deviceId = 1;
+    string signaleId = 2;
+    string value = 3;
+    google.protobuf.Timestamp timestamp = 4;
+}
+
+message sendSignalResponse {
+    ResponseCode responseCode = 1;
+}
+
+enum ResponseCode {
+    OK = 0;
+    ERROR = 1;
+  }
+
+service signalService {
+    rpc Signal(sendSignalRequest) returns (sendSignalResponse) {};
+}
